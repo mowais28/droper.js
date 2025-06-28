@@ -1,85 +1,89 @@
+# 📁 Droper.js
 
-# Droper.js
-
-**Droper.js** is a lightweight, modern file input enhancement tool with drag-and-drop support, live file previews (images, videos, PDFs), and SVG fallback icons for unsupported types — all styled using Bootstrap 5.
-
-> Created by **Muhammad Owais**
+**Droper.js** is a lightweight, customizable file uploader plugin that supports drag & drop, previews, existing file rendering, and more. Perfect for admin panels or CMS-style forms.
 
 ---
 
-## 🚀 Features
+## 🚀 Installation
 
-- 🖱️ Click or drag-and-drop to select files
-- 🖼️ Image, video, and PDF live preview
-- 🧾 Smart file icons for `.docx`, `.exe`, `.zip`, etc.
-- 📦 Support for both single & multiple file selection
-- 🧹 Remove files before upload
-- 🎨 Uses **Bootstrap 5** styling only — no extra CSS required
-
----
-
-## 📦 Installation
-
-### 📁 Option 1: Local
-
-Copy `droper.js` to your project folder and include it:
+Include the `droper.js` and `droper.css` files in your HTML:
 
 ```html
-<script src="/js/droper.js"></script>
+<link rel="stylesheet" href="/path/to/droper.css" />
+<script src="/path/to/droper.js"></script>
 ```
 
 ---
 
-## ⚙️ Initialization
+## 📦 Usage
 
-Droper provides two ways to initialize file inputs.
-
----
-
-### 1. `.init(selector)`
-
-Use this to initialize **a single input**.
+### 📌 Basic HTML
 
 ```html
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    droper.init('#myUploader'); // Or pass DOM element directly
-});
-</script>
+<input type="file" class="droper" name="thumbnail" accept="image/*" required />
 ```
 
 ---
 
-### 2. `.initAll(selector)`
+## 🧠 Initialization
 
-Use this to initialize **multiple file inputs** by class or any CSS selector.
+You can initialize **a single input** or **multiple inputs** with one line.
 
-```html
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    droper.initAll('.droper-uploader');
-});
-</script>
-```
-
----
-
-## 📁 Access Selected Files in JS
-
-You can access selected files anytime via:
+### ✅ Single Input
 
 ```js
-const files = document.querySelector('#myUploader')._droperFiles;
-console.log(files); // File[] array
+droper.init('input[name="thumbnail"]', {
+  maxFiles: 1,
+  previewHeight: '180px',
+  placeholder: 'Upload or drag an image here',
+});
+```
+
+### ✅ Multiple Inputs (Auto Init)
+
+```js
+droper.initAll('.droper', {
+  maxFiles: 1,
+  previewHeight: '180px',
+});
 ```
 
 ---
 
-## 🔍 File Type Preview Support
+## ⚙️ Options
 
-| File Type       | Preview Style            |
-|------------------|--------------------------|
-| `.jpg`, `.jpeg`, `.png`, `.gif` | Image preview 🖼️   |
-| `.mp4`, `.webm`  | Video player 🎞️       |
-| `.pdf`           | Inline iframe 📄        |
-| Others (`.docx`, `.exe`, `.zip`) | SVG icon fallback 📁 |
+| Option         | Type     | Default                 | Description                                                   |
+|----------------|----------|-------------------------|---------------------------------------------------------------|
+| `maxFiles`     | `Number` | `1`                     | Maximum number of files to allow                             |
+| `previewHeight`| `String` | `'150px'`               | Height for the preview container                             |
+| `placeholder`  | `String` | `'Upload or drag here'` | Placeholder text shown when no file is selected              |
+| `existingFiles`| `Array`  | `[]`                    | Array of existing files to show preview (for edit forms)     |
+
+### Example with `existingFiles`
+
+```js
+droper.init('input[name="thumbnail"]', {
+  existingFiles: [
+    {
+      url: 'https://example.com/image.jpg',
+    }
+  ]
+});
+```
+
+---
+
+## 📝 Notes
+
+- If your input has `required` attribute, Droper will enforce it.
+- Existing files are shown only as preview—they are not re-uploaded.
+- Droper does not send AJAX—it enhances `<input type="file">` and relies on regular form submission.
+
+---
+
+## 👨‍💻 Author
+
+Made with 💻 by **Muhammad Owais**  
+GitHub: [mowais28](https://github.com/mowais28)
+
+---
