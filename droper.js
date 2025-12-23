@@ -174,9 +174,10 @@ window.droper = {
         n._droperFiles = l;
         c();
     },
-    initAll: function (selector = 'input[type="file"].droper') {
+    initAll: function (selector = 'input[type="file"].droper', options = {}) {
         document.querySelectorAll(selector).forEach(el => {
-            window.droper.init(el);
+            window.droper.init(el, options);
         });
     }
+
 };

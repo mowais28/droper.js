@@ -9,8 +9,8 @@
 Include the `droper.js` and `droper.css` files in your HTML:
 
 ```html
-<link rel="stylesheet" href="/path/to/droper.css" />
-<script src="/path/to/droper.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mowais28/droper.js@v1.0.0/droper.css">
+<script src="https://cdn.jsdelivr.net/gh/mowais28/droper.js@v1.0.0/droper.js"></script>
 ```
 
 ---
