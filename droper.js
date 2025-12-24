@@ -7,7 +7,7 @@ window.droper = {
         const i = Object.assign(
             {
                 maxFiles: 5,
-                previewHeight: "160px",
+                previewHeight: "auto",
                 placeholder: "Click or drag files here to upload",
                 existingFiles: []
             },
@@ -61,10 +61,21 @@ window.droper = {
             s(n.files);
         });
 
+
+        function syncInputFiles() {
+            const dataTransfer = new DataTransfer();
+            l.forEach(file => dataTransfer.items.add(file));
+            n.files = dataTransfer.files;
+        }
+
+
+
         function s(files) {
             d ? Array.from(files).forEach(f => l.push(f)) : (l = [files[0]], i.existingFiles = []);
+            syncInputFiles();
             c();
         }
+
 
         function c() {
             o.innerHTML = "";
@@ -146,6 +157,7 @@ window.droper = {
             removeBtn.onclick = e => {
                 e.stopPropagation();
                 isNew ? l.splice(idx, 1) : i.existingFiles.splice(idx, 1);
+                syncInputFiles();
                 c();
             };
 
